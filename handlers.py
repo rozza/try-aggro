@@ -9,7 +9,9 @@ from motor import Op
 
 class MainHandler(tornado.web.RequestHandler):
     def get(self):
-        self.render('main.html')
+        db = self.application.settings['db']
+        quiz = db.quiz.find_one();
+        self.render('main.html' quiz=quiz)
 
 
 class ExampleHandler(tornado.web.RequestHandler):
