@@ -41,14 +41,21 @@
         "other" : { "bar" : 14 }
     }
   ],
-  "result": {
-      "_id" : "justin",
-      "avg_hits" : 3
+  "result":     {
+      "title" : "this is your title" ,
+      "author" : "dave" ,
+      "posted" : "Sun Aug 08 2100 00:11:10 GMT-0400 (EDT)" ,
+      "pageViews" : 7 ,
+      "tags" : [ "fun" , "sport" ] ,
+      "comments" : [
+          { "author" :"barbara" , "text" : "this is interesting" } ,
+          { "author" :"jenny" , "text" : "i like to play pinball",
+            "votes": 10 }
+      ],
+      "other" : { "bar" : 14 }
   },
-  "expected_aggregation": "db.test3.aggregate( {$match: {name:\"justin\"}}, { $unwind: \"$games\"}, {$project: {_id:0, strikes: \"$games.hits\"}})",
+  "expected_aggregation": "[{ $match : { author : \"dave\" }]",
   "step_descriptions": [
-    "select just the data associated with justin",
-    "unwind the list of games available for justin",
-    "only return the field strikes"
+    "select the blog post for dave"
   ]
 }
