@@ -29,9 +29,10 @@ if __name__ == "__main__":
     static_path = 'static'
 
     application = tornado.web.Application([
-        URLSpec(r"theme/static/(.+)", StaticFileHandler, {"path": static_path}, name='theme-static'),
+        URLSpec(r"/static/(.+)", StaticFileHandler, {"path": static_path}, name='static'),
         URLSpec(r"/answer", AnswerHandler, name='answer'),
         URLSpec(r"/?", MainHandler, name='main'),
+        URLSpec(r"/example/?", ExampleHandler, name='example'),
         ],
         db=db,
         template_path='templates',

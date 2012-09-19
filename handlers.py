@@ -12,6 +12,11 @@ class MainHandler(tornado.web.RequestHandler):
         self.render('main.html')
 
 
+class ExampleHandler(tornado.web.RequestHandler):
+    def get(self):
+        self.render('example.html')
+
+
 class AnswerHandler(tornado.web.RequestHandler):
     @asynchronous
     @gen.engine
