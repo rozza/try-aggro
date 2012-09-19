@@ -1,0 +1,3 @@
+greenlet 
+tornado
+https://github.com/ajdavis/mongo-python-driver/tarball/motor
