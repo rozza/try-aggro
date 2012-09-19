@@ -11,7 +11,7 @@ class MainHandler(tornado.web.RequestHandler):
     def get(self):
         db = self.application.settings['db']
         quiz = db.quiz.find_one();
-        self.render('main.html' quiz=quiz)
+        self.render('main.html', quiz=quiz)
 
 
 class ExampleHandler(tornado.web.RequestHandler):

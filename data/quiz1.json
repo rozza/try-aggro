@@ -34,7 +34,7 @@ db.agg.save({
   "result": {
       "_id" : "justin",
       "avg_hits" : 33.333333333333336
-  },_aggregation": "[{$match: {name:'justin'}}, { $group : { _id : \"$name\", avg_hits : { $avg : \"$hits\" } } }]",
+  },
   "expected_aggregation": function(){return [
       {$match: {name:'justin'}},
       { $group : { _id : "$name", avg_hits : { $avg : "$hits" } } }]},
