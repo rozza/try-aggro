@@ -1,0 +1,43 @@
+{
+  "title": "Sum all the strikes justin did in his play period",
+  "description": "Let's establish how many strikes Justin did in total over the period the dataset represents",
+  "difficulty": 1,
+  "data": [
+    {
+      "name": "justin",
+      "game": 1,
+      "date": "Wed Sep 19 2007 19:06:51 GMT-0400 (EDT)",
+      "hits": 20,
+      "strikes": 1,
+      "balls": 5,
+      "homeround": 1
+    },
+    {
+      "name": "justin",
+      "game": 1,
+      "date": "Wed Sep 20 2007 19:06:51 GMT-0400 (EDT)",
+      "hits": 30,
+      "strikes": 1,
+      "balls": 5,
+      "homeround": 1
+    },
+    {
+      "name": "justin",
+      "game": 1,
+      "date": "Wed Sep 21 2007 19:06:51 GMT-0400 (EDT)",
+      "hits": 50,
+      "strikes": 1,
+      "balls": 5,
+      "homeround": 1
+    }
+  ],
+  "result": {
+      "_id" : "justin",
+      "avg_hits" : 3
+  },
+  "expected_aggregation": "db.test2.aggregate( {$match: {name:'justin'}}, { $group : { _id : \"$name\", total_strikes : { $sum : \"$strikes\" } } })",
+  "step_descriptions": [
+    "select just the data associated with justin",
+    "group by name and calculate the sum of all the strikes in the game"
+  ]
+}
