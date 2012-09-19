@@ -1,0 +1,33 @@
+<html>
+  <head>
+    <title>{% block title %}Default title{% end %}</title>
+    <link href="/static/css/bootstrap.css" rel="stylesheet">
+    <link href="/static/css/bootstrap-responsive.css" rel="stylesheet">
+    {% block head_scripts %}{% end %}
+  </head>
+  <body>
+    <div class="navbar navbar-fixed-top">
+     <div class="navbar-inner">
+       <div class="container">
+         <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+           <span class="icon-bar"></span>
+           <span class="icon-bar"></span>
+           <span class="icon-bar"></span>
+         </a>
+         <a class="brand" href="/">Try Aggro</a>
+         <div class="nav-collapse" id="main-menu">
+         </div>
+       </div>
+     </div>
+   </div>
+
+    <div class="container">
+    {% block container %} {% end %}
+    </div>
+
+    {% block footer_scripts %}
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    {% end %}
+  </body>
+</html>
