@@ -35,7 +35,7 @@
       "_id" : "justin",
       "avg_hits" : 33.333333333333336
   },
-  "expected_aggregation": "db.test2.aggregate( {$match: {name:'justin'}}, { $group : { _id : \"$name\", avg_hits : { $avg : \"$hits\" } } })",
+  "expected_aggregation": "[{$match: {name:'justin'}}, { $group : { _id : \"$name\", avg_hits : { $avg : \"$hits\" } } }]",
   "step_descriptions": [
     "select just the data associated with justin",
     "group by name and calculate the average of all the hits per game"

@@ -1,35 +1,44 @@
 {
-  "title": "Project all the games elements to the top",
-  "description": "Lets transform the document projecting all the documents in the game",
+  "title": "Select dave's post",
+  "description": "Let's match on a single document showing dave's blog post",
   "difficulty": 1,
   "data": [
     {
-      "name": "justin",
-      "games": [
-        {
-          "date": "Wed Sep 19 2007 19:06:51 GMT-0400 (EDT)",
-          "hits": 20,
-          "strikes": 1,
-          "balls": 5,
-          "homeround": 1
-        },
-        {
-          "game": 1,
-          "date": "Wed Sep 20 2007 19:06:51 GMT-0400 (EDT)",
-          "hits": 30,
-          "strikes": 1,
-          "balls": 5,
-          "homeround": 1
-        },
-        {
-          "game": 1,
-          "date": "Wed Sep 21 2007 19:06:51 GMT-0400 (EDT)",
-          "hits": 50,
-          "strikes": 1,
-          "balls": 5,
-          "homeround": 1
-        }        
-      ]
+        "title" : "this is my title" ,
+        "author" : "bob" ,
+        "posted" : "Sun Mar 21 2004 13:59:54 GMT-0500 (EDT)",
+        "pageViews" : 5 ,
+        "tags" : [ "fun" , "good" , "fun" ] ,
+        "comments" : [
+            { "author" :"joe" , "text" : "this is cool" } ,
+            { "author" :"sam" , "text" : "this is bad" }
+        ],
+        "other" : { "foo" : 5 }
+    },
+    {
+        "title" : "this is your title" ,
+        "author" : "dave" ,
+        "posted" : "Sun Aug 08 2100 00:11:10 GMT-0400 (EDT)" ,
+        "pageViews" : 7 ,
+        "tags" : [ "fun" , "sport" ] ,
+        "comments" : [
+            { "author" :"barbara" , "text" : "this is interesting" } ,
+            { "author" :"jenny" , "text" : "i like to play pinball",
+              "votes": 10 }
+        ],
+        "other" : { "bar" : 14 }
+    },
+    {
+        "title" : "this is some other title" ,
+        "author" : "jane" ,
+        "posted" : "Sun Dec 31 2000 00:17:14 GMT-0500 (EST)" ,
+        "pageViews" : 6 ,
+        "tags" : [ "sport" , "code" ] ,
+        "comments" : [
+            { "author" :"will" , "text" : "i don't like the color" } ,
+            { "author" :"jenny" , "text" : "can i get that in green?" }
+        ],
+        "other" : { "bar" : 14 }
     }
   ],
   "result": {
