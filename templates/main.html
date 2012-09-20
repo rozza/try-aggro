@@ -1,16 +1,21 @@
 {% extends "base.html" %}
 
 {% block container %}
+{% from pprint import pformat %}
 <section id="quiz">
   <div class="page-header">
-    <h1>Quiz</h1>
+    <h1>{{ quiz['title'] }}</h1>
   </div>
 
   <!-- Headings & Paragraph Copy -->
   <div class="row">
     <div class="span9">
-      <div>Hai </div>
-      {{ quiz}}
+      <h2>{{ quiz['description'] }}</h2>
+      {{ quiz }}
+
+      <h3>Sample data</h3>
+      <textarea id="editor">{% raw data %}</textarea>
+      <pre><code>{% raw data %}</code></pre>
     </div>
   </div>
 </section>

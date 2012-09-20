@@ -1,3 +1,4 @@
+import datetime
 import json
 
 import tornado.web
@@ -17,7 +18,9 @@ class MainHandler(tornado.web.RequestHandler):
     def get(self):
         db = self.application.settings['db']
         quiz = yield Op(db.quiz.find_one)
-        self.render('main.html', quiz=quiz)
+        data = json.dumps(quiz['data'], cls=ComplexEncoder)
+        data = data.replace('"ISODate(\\"', 'ISODate("').replace('\\")"', ')')
+        self.render('main.html', quiz=quiz, data=data)
 
 
 class ExampleHandler(tornado.web.RequestHandler):
@@ -59,3 +62,10 @@ class AnswerHandler(tornado.web.RequestHandler):
         }))
 
         self.finish()
+
+
+class ComplexEncoder(json.JSONEncoder):
+    def default(self, obj):
+        if isinstance(obj, datetime.datetime):
+            return 'ISODate("%sZ")' % obj.isoformat()
+        return json.JSONEncoder.default(self, obj)
