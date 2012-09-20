@@ -41,53 +41,31 @@ db.agg.save({
   ],
   "result": [
     {
-      "author" : "bob",
-      "pageViews" : 5,
-      "tags" : "fun"
+      "comments" : {
+        "author" : "jenny",
+        "text" : "i like to play pinball",
+        "votes" : 10
+      }
     },
     {
-      "author" : "bob",
-      "pageViews" : 5,
-      "tags" : "good"
-    },
-    {
-      "author" : "bob",
-      "pageViews" : 5,
-      "tags" : "fun"
-    },
-    {
-      "author" : "dave",
-      "pageViews" : 7,
-      "tags" : "fun"
-    },
-    {
-      "author" : "dave",
-      "pageViews" : 7,
-      "tags" : "sport"
-    },
-    {
-      "author" : "jane",
-      "pageViews" : 6,
-      "tags" : "sport"
-    },
-    {
-      "author" : "jane",
-      "pageViews" : 6,
-      "tags" : "code"
+      "comments" : {
+        "author" : "jenny",
+        "text" : "can i get that in green?"
+      }
     }
   ],
   "expected_aggregation": function(){return [
+    { $match : {"comments.author" : "jenny" }},
     { $project : {
-      _id : 0,
-      author : 1,
-      tags : 1,
-      pageViews : 1
+      _id: 0, 
+      comments : 1
     }},
-    { $unwind : "$tags" }
+    { $unwind : "$comments" },
+    { $match : { "comments.author" : "jenny" } }
   ]},
-  "title": "unwind the tags and project a minimum set of values",
-  "description": "unwind the tags and project a minimum set of values",
+  "title": "only show the comments where jenny was the author",
+  "description": "only show the comments where jenny was the author",
   "step_descriptions": [
-    "exclude the id field add the author, tags and pageViews before unwinding all the documents by tags"
+    "filter out all the documents where the author is jenny, project the comments, unwind all of the comments and filter out all comments not written by jenny"
   ]
 });
