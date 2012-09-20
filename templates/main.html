@@ -1,6 +1,14 @@
 {% extends "base.html" %}
 
 {% block container %}
+  <div class="row">
+    <div class="span12">
+<div class="alert fade in" id="agg-message" style="display: none;">
+    <button type="button" class="close">&#10006;</button>
+    <div id="alert_msg"></div>
+</div>
+</div>
+</div>
 <section id="quiz">
 
   <div class="row">
@@ -36,10 +44,6 @@
           <li class="active"><a href="#answer" data-toggle="tab">Your Answer</a></li>
           <li style="display: none;" id="result-nav"><a href="#results" data-toggle="tab">Result</a></li>
         </ul>
-        <div class="alert fade in" id="agg-message" style="display: none;">
-            <button type="button" class="close">&#10006;</button>
-            <div id="alert_msg"></div>
-        </div>
         <div class="tab-content">
            <div id="answer" class="tab-pane active">
                 <div id="answer-input" class="ace-editor"> </div>

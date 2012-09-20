@@ -11,10 +11,10 @@ $(function () {
                 var message = $('#agg-message #alert_msg');
                 if (data['ok']) {
                     message.html(data['message']);
-                    alert.removeClass('alert-error').addClass('alert-success');
+                    alert.removeClass('alert-block').addClass('alert-success');
                 } else {
                     message.html(data['error']);
-                    alert.removeClass('alert-success').addClass('alert-error');
+                    alert.removeClass('alert-success').addClass('alert-block');
                 }
                 result.setValue(data['result']);
 
