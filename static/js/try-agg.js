@@ -6,12 +6,15 @@ $(function () {
             url:'/answer/' + quiz_id,
             data: answer.getValue(),
             success: function success(data) {
-                var message = $('#agg-message');
-                message.show();
+                var alert = $('#agg-message').show();
+                console.log(data)
+                var message = $('#agg-message #alert_msg');
                 if (data['ok']) {
-                    message.html(data['message']).removeClass('alert-error').addClass('alert-success');
+                    message.html(data['message']);
+                    alert.removeClass('alert-error').addClass('alert-success');
                 } else {
-                    message.html(data['error']).removeClass('alert-success').addClass('alert-error');
+                    message.html(data['error']);
+                    alert.removeClass('alert-success').addClass('alert-error');
                 }
                 result.setValue(data['result']);
 
@@ -27,5 +30,9 @@ $(function () {
         });
 
         return false;
+    });
+
+    $('.alert .close').live("click", function(e) {
+        $(this).parent().hide();
     });
 });

@@ -4,13 +4,14 @@
 
 .ace-editor {
   position: relative !important;
-  background: #fff;
+  background: #272822;
   min-width: 400px;
   max-width: 80%;
   height: 350px;
   border: 1px solid #999;
   -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
+  color: #272822;
 }
 
 #editor {
@@ -30,9 +31,18 @@
 }
 
 .nav-tabs li > a, .nav-pills li > a {
--webkit-border-top-left-radius: 2px;
--webkit-border-top-right-radius: 2px;
+-webkit-border-top-left-radius: 4px;
+-webkit-border-top-right-radius: 4px;
+}
+.nav-tabs li, .nav-pills li {
+  margin-bottom: -2px;
 }
 
+.alert {
+  position: absolute;
+  z-index: 100;
+  width: 406px;
+}
 .right {text-align: right;}
 .center {text-align: center;}
+

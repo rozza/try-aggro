@@ -36,20 +36,20 @@
           <li class="active"><a href="#answer" data-toggle="tab">Your Answer</a></li>
           <li style="display: none;" id="result-nav"><a href="#results" data-toggle="tab">Result</a></li>
         </ul>
+        <div class="alert fade in" id="agg-message" style="display: none;">
+            <button type="button" class="close">&#10006;</button>
+            <div id="alert_msg"></div>
+        </div>
         <div class="tab-content">
            <div id="answer" class="tab-pane active">
-            <form id="answer-form">
                 <div id="answer-input" class="ace-editor"> </div>
-              <form id="answer-form">
-                <input type="hidden" id="quiz-id" value="{{ quiz['_id'] }}">
-              </form>
-              <div class="alert" id="agg-message" style="display: none;">&nbsp;</span>
-              </div>
-            </form>
           </div>
           <div id="results" class="tab-pane">
             <div id="result" class="ace-editor"> </div>
           </div>
+          <form id="answer-form">
+            <input type="hidden" id="quiz-id" value="{{ quiz['_id'] }}">
+          </form>
         </div>
     </div>
     </div>
