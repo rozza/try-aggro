@@ -15,7 +15,10 @@ from diff_sequences import diff_sequences
 def format_document(doc):
     return json.dumps(
         doc, cls=ComplexEncoder, indent=4
-    ).replace('"ISODate(\\"', 'ISODate("').replace('\\")"', ')')
+    ).replace('"ISODate', 'ISODate'
+    ).replace('"ObjectId', 'ObjectId'
+    ).replace('\\")"', '")').replace('\\"', '"')
+
 
 class MainHandler(tornado.web.RequestHandler):
 
