@@ -32,14 +32,19 @@
     <script src="http://d1n0x3qji82z53.cloudfront.net/src-min-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
       <script>
           var editor = ace.edit("editor");
+          editor.setReadOnly(true);
           editor.setTheme("ace/theme/monokai");
           editor.getSession().setMode("ace/mode/javascript");
           editor.setReadOnly(true);
 
+          var correct_output = ace.edit("correct-output");
+          correct_output.setReadOnly(true);
+          correct_output.setTheme("ace/theme/monokai");
+          correct_output.getSession().setMode("ace/mode/javascript");
+
           var answer = ace.edit("answer-input");
           answer.setTheme("ace/theme/monokai");
           answer.getSession().setMode("ace/mode/javascript");
-
       </script>
 
     {% block footer_scripts %}

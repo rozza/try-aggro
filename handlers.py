@@ -12,6 +12,11 @@ from motor import Op
 from diff_sequences import diff_sequences
 
 
+def format_document(doc):
+    return json.dumps(
+        doc, cls=ComplexEncoder, indent=4
+    ).replace('"ISODate(\\"', 'ISODate("').replace('\\")"', ')')
+
 class MainHandler(tornado.web.RequestHandler):
 
     @tornado.web.asynchronous
@@ -23,9 +28,10 @@ class MainHandler(tornado.web.RequestHandler):
         if not quiz:
             raise tornado.web.HTTPError(404)
         quiz = quiz[0]
-        data = json.dumps(quiz['data'], cls=ComplexEncoder, indent=4)
-        data = data.replace('"ISODate(\\"', 'ISODate("').replace('\\")"', '")')
-        self.render('main.html', quiz=quiz, data=data, page=page)
+        data = format_document(quiz['data'])
+        correct_output = format_document(quiz['result'])
+        self.render('main.html', quiz=quiz, data=data,
+                    page=page, correct_output=correct_output)
 
 
 class ExampleHandler(tornado.web.RequestHandler):
@@ -51,9 +57,10 @@ class AnswerHandler(tornado.web.RequestHandler):
             yield Op(collection.insert, quiz['data'])
 
         try:
-            parsed_body = json.loads(self.request.body)
-        except ValueError:
-            self.write({'ok': 0, 'error': 'Bad JSON'})
+            body = self.request.body
+            parsed_body = json.loads('{"value": %s }' % body)['value']
+        except ValueError, e:
+            self.write({'ok': 0, 'error': 'Bad JSON: ' + str(e)})
             self.finish()
             yield StopIteration
 
@@ -83,7 +90,7 @@ class AnswerHandler(tornado.web.RequestHandler):
             }, cls=ComplexEncoder))
         else:
             self.write(json.dumps({
-                'ok': 0,
+                'ok': 1,
                 'result': result['result'],
                 'message': 'How lovely; cheers!'
             }, cls=ComplexEncoder))
