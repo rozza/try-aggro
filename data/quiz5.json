@@ -41,7 +41,7 @@ db.agg.save({
         "other" : { "bar" : 14 }
     }
   ],
-  "result":     {
+  "result": {
       "title" : "this is my title",
       "author" : "bob",
       "posted" : "Sun Mar 21 2004 13:59:54 GMT-0500 (EDT)",
