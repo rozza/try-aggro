@@ -18,7 +18,7 @@ class MainHandler(tornado.web.RequestHandler):
     def get(self):
         db = self.application.settings['db']
         quiz = yield Op(db.quiz.find_one)
-        data = json.dumps(quiz['data'], cls=ComplexEncoder)
+        data = json.dumps(quiz['data'], cls=ComplexEncoder, indent=4)
         data = data.replace('"ISODate(\\"', 'ISODate("').replace('\\")"', ')')
         self.render('main.html', quiz=quiz, data=data)
 

@@ -1,9 +1,9 @@
 $(function () {
-    $('#answer-form').submit(function () {
+    $('#answer-button').click(function () {
         $.ajax({
             type:'POST',
             url:'/answer',
-            data:$('#answer-input').val(),
+            data: answer.getValue(),
             success: function success(data) {
                 var message = $('#agg-message').show();
                 if (data['ok']) {

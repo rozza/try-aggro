@@ -3,28 +3,31 @@
 {% block container %}
 {% from pprint import pformat %}
 <section id="quiz">
-  <div class="page-header">
-    <h1>{{ quiz['title'] }}</h1>
-  </div>
 
-  <!-- Headings & Paragraph Copy -->
   <div class="row">
-    <div class="span9">
+    <div class="page-header span12">
+      <h1>{{ quiz['title'] }}</h1>
       <h2>{{ quiz['description'] }}</h2>
-      {{ quiz }}
-
+    </div>
+  </div>
+  <div class="row">
+    <div class="span6">
       <h3>Sample data</h3>
-      <textarea id="editor">{% raw data %}</textarea>
-      <pre><code>{% raw data %}</code></pre>
+      <div id="editor" class="ace-editor">{% raw data %}</div>
+    </div>
 
-      <div>Your Answer:</div>
-      <div>
-        <form id="answer-form">
-          <textarea id="answer-input" rows="10" cols="100" style="background: black; color:#ffffff;"></textarea>
-          <input type="submit" value="Try it!" />
-        </form>
-        <div class="alert" id="agg-message" style="display: none;">&nbsp;</span>
+    <div class="span6">
+      <h3>Your Answer:</h3> <div class="alert" id="agg-message" style="display: none;">&nbsp;</div>
+      <form id="answer-form">
+      <div class="control-group">
+        <div class="controls">
+          <div id="answer-input" class="ace-editor"> </div>
+        </div>
       </div>
+      <button id="answer-button">Try it!</button>
+      </form>
+
+    </div>
     </div>
   </div>
 </section>
@@ -32,5 +35,5 @@
 {% end %}
 
 {% block footer_scripts %}
-<script src="/static/js/try-agg.js"></script>
+<script src="/static/js/try-agg.js?1"></script>
 {% end %}
