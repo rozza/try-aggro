@@ -1,8 +1,7 @@
 db.quiz.save({
-  "_id": 5,
-  "title": "Select bob's post",
-  "description": "Let's match on a single document showing bobs's blog post using skip and limit",
-  "difficulty": 1,
+  "title": "Tags and views",
+  "description": "Let's pull out the tags and pageviews values and create a new meta sub document",
+  "difficulty": 2,
   "data": [
     {
       "title" : "this is my title" ,
@@ -42,37 +41,50 @@ db.quiz.save({
       "other" : { "bar" : 14 }
     }
   ],
-  "result": {
-      "title" : "this is my title",
+  "result": [
+    {
+      "_id" : ObjectId("505a58819b1e9234661b98f5"),
       "author" : "bob",
-      "posted" : new Date(1079895594000),
-      "pageViews" : 5,
-      "tags" : [
-        "fun",
-        "good",
-        "fun"
-      ],
-      "comments" : [
-        {
-          "author" : "joe",
-          "text" : "this is cool"
-        },
-        {
-          "author" : "sam",
-          "text" : "this is bad"
-        }
-      ],
-      "other" : {
-        "foo" : 5
+      "meta" : {
+        "tags" : [
+          "fun",
+          "good",
+          "fun"
+        ],
+        "views" : 5
       }
     },
+    {
+      "_id" : ObjectId("505a58819b1e9234661b98f6"),
+      "author" : "dave",
+      "meta" : {
+        "tags" : [
+          "fun",
+          "sport"
+        ],
+        "views" : 7
+      }
+    },
+    {
+      "_id" : ObjectId("505a58819b1e9234661b98f7"),
+      "author" : "jane",
+      "meta" : {
+        "tags" : [
+          "sport",
+          "code"
+        ],
+        "views" : 6
+      }
+    }
+  ],
   "expected_aggregation": function(){return [
-      { $sort : { author: 1} },
-      { $skip : 0 },
-      { $limit : 1 }]},
+      { $project : {
+          author : 1,
+          meta : { tags : "$tags",
+                   views : "$pageViews" }
+                  }}
+      ]},
   "step_descriptions": [
-    "sort by author",
-    "skip 0 documents",
-    "limit the result set to a single document"
+    "exclude the id field and promote the foo and bar variables to the top results"
   ]
 });

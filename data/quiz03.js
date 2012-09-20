@@ -1,5 +1,4 @@
 db.quiz.save({
-  "_id": 3,
   "title": "Project all the games elements to the top",
   "description": "Lets transform the document projecting all the documents in the game",
   "difficulty": 1,

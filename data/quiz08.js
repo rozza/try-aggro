@@ -1,8 +1,7 @@
 db.quiz.save({
-  "_id": 6,
-  "title": "Foo and Bar",
-  "description": "Let's pull out the foo and bar values from thes subdocuments and return them",
-  "difficulty": 1,
+  "title": "Projecting Authors",
+  "description": "Return the author for each document and mark it with a boolean if it's dave who wrote it",
+  "difficulty": 2,
   "data": [
     {
       "title" : "this is my title" ,
@@ -44,22 +43,26 @@ db.quiz.save({
   ],
   "result": [
     {
-      "foo" : 5
+      "author" : "bob",
+      "daveWroteIt" : false
     },
     {
-      "bar" : 14
+      "author" : "dave",
+      "daveWroteIt" : true
     },
     {
-      "bar" : 14
+      "author" : "jane",
+      "daveWroteIt" : false
     }
   ],
   "expected_aggregation": function(){return [
-      { $project : {
-        _id: 0,
-        foo : "$other.foo",
-        bar : "$other.bar"
-      }}]},
+    { $project : {
+      _id: 0,
+      author : 1,
+      daveWroteIt : { $eq : ["$author", "dave"] }
+    }}
+  ]},
   "step_descriptions": [
-    "exclude the id field and promote the foo and bar variables to the top results"
+    "exclude the id field add the author field and return the result of checking the equality of the author field against dave as daveWroteIt"
   ]
 });

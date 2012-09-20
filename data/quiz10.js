@@ -1,5 +1,4 @@
 db.quiz.save({
-  "_id": 10,
   "title": "Having fun on a date",
   "description": "Split out all the components of the data for each document and return a new exploded document",
   "difficulty": 3,

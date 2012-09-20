@@ -1,8 +1,7 @@
 db.quiz.save({
-  "_id": 7,
-  "title": "Tags and views",
-  "description": "Let's pull out the tags and pageviews values and create a new meta sub document",
-  "difficulty": 2,
+  "title": "Select dave's post",
+  "description": "Let's match on a single document showing dave's blog post",
+  "difficulty": 1,
   "data": [
     {
       "title" : "this is my title" ,
@@ -42,50 +41,22 @@ db.quiz.save({
       "other" : { "bar" : 14 }
     }
   ],
-  "result": [
-    {
-      "_id" : ObjectId("505a58819b1e9234661b98f5"),
-      "author" : "bob",
-      "meta" : {
-        "tags" : [
-          "fun",
-          "good",
-          "fun"
-        ],
-        "views" : 5
-      }
-    },
-    {
-      "_id" : ObjectId("505a58819b1e9234661b98f6"),
-      "author" : "dave",
-      "meta" : {
-        "tags" : [
-          "fun",
-          "sport"
-        ],
-        "views" : 7
-      }
-    },
-    {
-      "_id" : ObjectId("505a58819b1e9234661b98f7"),
-      "author" : "jane",
-      "meta" : {
-        "tags" : [
-          "sport",
-          "code"
-        ],
-        "views" : 6
-      }
-    }
-  ],
+  "result": {
+    "title" : "this is your title" ,
+    "author" : "dave" ,
+    "posted" : new Date(4121381470000) ,
+    "pageViews" : 7 ,
+    "tags" : [ "fun" , "sport" ] ,
+    "comments" : [
+        { "author" :"barbara" , "text" : "this is interesting" } ,
+        { "author" :"jenny" , "text" : "i like to play pinball",
+          "votes": 10 }
+    ],
+    "other" : { "bar" : 14 }
+  },
   "expected_aggregation": function(){return [
-      { $project : {
-          author : 1,
-          meta : { tags : "$tags",
-                   views : "$pageViews" }
-                  }}
-      ]},
+      { $match : { author : "dave" }}]},
   "step_descriptions": [
-    "exclude the id field and promote the foo and bar variables to the top results"
+    "select the blog post for dave"
   ]
 });

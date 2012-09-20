@@ -55,7 +55,7 @@ class AnswerHandler(tornado.web.RequestHandler):
     @gen.engine
     def post(self, quiz_id):
         db = self.application.settings['db']
-        quiz = yield Op(db.quiz.find_one, {'_id': ObjectId(quiz_id)})
+        quiz = yield Op(db.quiz.find_one, {'_id': quiz_id})
         if not quiz:
             raise HTTPError(404)
 

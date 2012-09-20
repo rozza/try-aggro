@@ -1,8 +1,7 @@
 db.quiz.save({
-  "_id": 4,
-  "title": "Select dave's post",
-  "description": "Let's match on a single document showing dave's blog post",
-  "difficulty": 1,
+  "title": "Playing with project",
+  "description": "Return the total page views for each document adding together the pageViews and either the foo or bar values",
+  "difficulty": 3,
   "data": [
     {
       "title" : "this is my title" ,
@@ -42,22 +41,27 @@ db.quiz.save({
       "other" : { "bar" : 14 }
     }
   ],
-  "result": {
-    "title" : "this is your title" ,
-    "author" : "dave" ,
-    "posted" : new Date(4121381470000) ,
-    "pageViews" : 7 ,
-    "tags" : [ "fun" , "sport" ] ,
-    "comments" : [
-        { "author" :"barbara" , "text" : "this is interesting" } ,
-        { "author" :"jenny" , "text" : "i like to play pinball",
-          "votes": 10 }
-    ],
-    "other" : { "bar" : 14 }
-  },
+  "result": [
+    {
+      "totalViews" : 10
+    },
+    {
+      "totalViews" : 21
+    },
+    {
+      "totalViews" : 20
+    }
+  ],
   "expected_aggregation": function(){return [
-      { $match : { author : "dave" }}]},
+    { $project : {
+    _id: 0,
+    totalViews : { $add :
+                    ["$pageViews",
+                     { $ifNull : ["$other.foo",
+                                  "$other.bar"] } ] }
+    }}
+  ]},
   "step_descriptions": [
-    "select the blog post for dave"
+    "exclude the id field add the totalViews field that is the pageViews value + other.foo or other.bar if foo equals null"
   ]
 });

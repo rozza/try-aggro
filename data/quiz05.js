@@ -1,8 +1,7 @@
 db.quiz.save({
-  "_id": 9,
-  "title": "Playing with project",
-  "description": "Return the total page views for each document adding together the pageViews and either the foo or bar values",
-  "difficulty": 3,
+  "title": "Select bob's post",
+  "description": "Let's match on a single document showing bobs's blog post using skip and limit",
+  "difficulty": 1,
   "data": [
     {
       "title" : "this is my title" ,
@@ -42,27 +41,37 @@ db.quiz.save({
       "other" : { "bar" : 14 }
     }
   ],
-  "result": [
-    {
-      "totalViews" : 10
+  "result": {
+      "title" : "this is my title",
+      "author" : "bob",
+      "posted" : new Date(1079895594000),
+      "pageViews" : 5,
+      "tags" : [
+        "fun",
+        "good",
+        "fun"
+      ],
+      "comments" : [
+        {
+          "author" : "joe",
+          "text" : "this is cool"
+        },
+        {
+          "author" : "sam",
+          "text" : "this is bad"
+        }
+      ],
+      "other" : {
+        "foo" : 5
+      }
     },
-    {
-      "totalViews" : 21
-    },
-    {
-      "totalViews" : 20
-    }
-  ],
   "expected_aggregation": function(){return [
-    { $project : {
-    _id: 0,
-    totalViews : { $add :
-                    ["$pageViews",
-                     { $ifNull : ["$other.foo",
-                                  "$other.bar"] } ] }
-    }}
-  ]},
+      { $sort : { author: 1} },
+      { $skip : 0 },
+      { $limit : 1 }]},
   "step_descriptions": [
-    "exclude the id field add the totalViews field that is the pageViews value + other.foo or other.bar if foo equals null"
+    "sort by author",
+    "skip 0 documents",
+    "limit the result set to a single document"
   ]
 });
