@@ -30,7 +30,7 @@ class MainHandler(tornado.web.RequestHandler):
         if page < 0:
             self.redirect('/1')
             raise StopIteration
-        quizzes = (yield Op(db.quiz.find().skip(page).limit(2).to_list))
+        quizzes = (yield Op(db.quiz.find().sort('_id', -1).skip(page).limit(2).to_list))
         if len(quizzes) == 2:
             quiz = quizzes[0]
             has_next = True

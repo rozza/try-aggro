@@ -1,4 +1,5 @@
 db.quiz.save({
+  "_id": 9,
   "title": "Playing with project",
   "description": "Return the total page views for each document adding together the pageViews and either the foo or bar values",
   "difficulty": 3,

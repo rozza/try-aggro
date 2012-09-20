@@ -1,4 +1,5 @@
 db.quiz.save({
+  "_id": 8,
   "title": "Projecting Authors",
   "description": "Return the author for each document and mark it with a boolean if it's dave who wrote it",
   "difficulty": 2,

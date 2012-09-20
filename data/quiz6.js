@@ -1,4 +1,5 @@
 db.quiz.save({
+  "_id": 6,
   "title": "Foo and Bar",
   "description": "Let's pull out the foo and bar values from thes subdocuments and return them",
   "difficulty": 1,

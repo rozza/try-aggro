@@ -1,4 +1,5 @@
 db.quiz.save({
+  "_id": 1,
   "title": "Average score of Justin T",
   "description": "Justin has the best batting record in baseball, what is his game average for last year?",
   "difficulty": 1,

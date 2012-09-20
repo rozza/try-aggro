@@ -1,4 +1,5 @@
 db.quiz.save({
+  "_id": 5,
   "title": "Select bob's post",
   "description": "Let's match on a single document showing bobs's blog post using skip and limit",
   "difficulty": 1,
@@ -67,7 +68,7 @@ db.quiz.save({
     },
   "expected_aggregation": function(){return [
       { $sort : { author: 1} },
-      { $skip : 0 }, 
+      { $skip : 0 },
       { $limit : 1 }]},
   "step_descriptions": [
     "sort by author",

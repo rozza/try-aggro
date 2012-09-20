@@ -1,4 +1,5 @@
 db.quiz.save({
+  "_id": 3,
   "title": "Project all the games elements to the top",
   "description": "Lets transform the document projecting all the documents in the game",
   "difficulty": 1,
@@ -28,7 +29,7 @@ db.quiz.save({
           "strikes": 1,
           "balls": 5,
           "homeround": 1
-        }        
+        }
       ]
     }
   ],
@@ -55,7 +56,7 @@ db.quiz.save({
       "strikes": 1,
       "balls": 5,
       "homeround": 1
-    }        
+    }
   ],
   "expected_aggregation": function(){return [
       {$match: {name:"justin"}},

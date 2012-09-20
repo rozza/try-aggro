@@ -1,4 +1,5 @@
 db.quiz.save({
+  "_id": 2,
   "title": "Sum all the strikes justin did in his play period",
   "description": "Let's establish how many strikes Justin did in total over the period the dataset represents",
   "difficulty": 1,

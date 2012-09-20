@@ -1,4 +1,5 @@
 db.quiz.save({
+  "_id": 12,
   "difficulty": 1,
   "data": [
     {

@@ -1,4 +1,5 @@
 db.quiz.save({
+  "_id": 4,
   "title": "Select dave's post",
   "description": "Let's match on a single document showing dave's blog post",
   "difficulty": 1,

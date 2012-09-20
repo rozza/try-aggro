@@ -1,4 +1,5 @@
 db.quiz.save({
+  "_id": 7,
   "title": "Tags and views",
   "description": "Let's pull out the tags and pageviews values and create a new meta sub document",
   "difficulty": 2,
