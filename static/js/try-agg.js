@@ -1,11 +1,13 @@
 $(function () {
     $('#answer-form').submit(function () {
+        var quiz_id = $('#quiz-id').val();
         $.ajax({
             type:'POST',
-            url:'/answer',
+            url:'/answer/' + quiz_id,
             data:$('#answer-input').val(),
             success: function success(data) {
-                var message = $('#agg-message').show();
+                var message = $('#agg-message');
+                message.show();
                 if (data['ok']) {
                     message.html(data['message']).removeClass('alert-error').addClass('alert-success');
                 } else {
