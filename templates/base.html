@@ -35,10 +35,13 @@
           editor.setTheme("ace/theme/monokai");
           editor.getSession().setMode("ace/mode/javascript");
 
+          var correct_output = ace.edit("correct-output");
+          correct_output.setTheme("ace/theme/monokai");
+          correct_output.getSession().setMode("ace/mode/javascript");
+
           var answer = ace.edit("answer-input");
           answer.setTheme("ace/theme/monokai");
           answer.getSession().setMode("ace/mode/javascript");
-
       </script>
 
     {% block footer_scripts %}

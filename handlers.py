@@ -12,6 +12,11 @@ from motor import Op
 from diff_sequences import diff_sequences
 
 
+def format_document(doc):
+    return json.dumps(
+        doc, cls=ComplexEncoder, indent=4
+    ).replace('"ISODate(\\"', 'ISODate("').replace('\\")"', ')')
+
 class MainHandler(tornado.web.RequestHandler):
 
     @tornado.web.asynchronous
@@ -19,9 +24,9 @@ class MainHandler(tornado.web.RequestHandler):
     def get(self):
         db = self.application.settings['db']
         quiz = yield Op(db.quiz.find_one)
-        data = json.dumps(quiz['data'], cls=ComplexEncoder, indent=4)
-        data = data.replace('"ISODate(\\"', 'ISODate("').replace('\\")"', ')')
-        self.render('main.html', quiz=quiz, data=data)
+        data = format_document(quiz['data'])
+        correct_output = format_document(quiz['result'])
+        self.render('main.html', quiz=quiz, data=data, correct_output=correct_output)
 
 
 class ExampleHandler(tornado.web.RequestHandler):
