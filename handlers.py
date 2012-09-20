@@ -16,12 +16,16 @@ class MainHandler(tornado.web.RequestHandler):
 
     @tornado.web.asynchronous
     @gen.engine
-    def get(self):
+    def get(self, quiz_id=1):
         db = self.application.settings['db']
-        quiz = yield Op(db.quiz.find_one)
+        page = int(quiz_id) - 1
+        quiz = (yield Op(db.quiz.find().skip(page).limit(1).to_list))
+        if not quiz:
+            raise tornado.web.HTTPError(404)
+        quiz = quiz[0]
         data = json.dumps(quiz['data'], cls=ComplexEncoder, indent=4)
-        data = data.replace('"ISODate(\\"', 'ISODate("').replace('\\")"', ')')
-        self.render('main.html', quiz=quiz, data=data)
+        data = data.replace('"ISODate(\\"', 'ISODate("').replace('\\")"', '")')
+        self.render('main.html', quiz=quiz, data=data, page=page)
 
 
 class ExampleHandler(tornado.web.RequestHandler):
