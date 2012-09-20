@@ -5,10 +5,11 @@ $(function () {
             url:'/answer',
             data:$('#answer-input').val(),
             success: function success(data) {
+                var message = $('#agg-message').show();
                 if (data['ok']) {
-                    alert(data['message']);
+                    message.html(data['message']).removeClass('alert-error').addClass('alert-success');
                 } else {
-                    alert(data['error']);
+                    message.html(data['error']).removeClass('alert-success').addClass('alert-error');
                 }
             },
             error: function(jqXHR, textStatus, errorThrown) {
