@@ -5,7 +5,10 @@
 
   <div class="row">
     <div class="page-header span12">
-      <h1>{{ page + 1 }}) {{ quiz['title'] }}</h1>
+      <h1>{% if page > 0 %}<a href="/{{ page }}" class="btn btn-inverse">←</a>{% end %}
+          {{ page + 1 }}. {{ quiz['title'] }}
+          {% if has_next %}<a href="/{{ page + 2 }}" class="btn btn-inverse">→</a>{% end %}
+      </h1>
       <h2>{{ quiz['description'] }}</h2>
     </div>
   </div>

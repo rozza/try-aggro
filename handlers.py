@@ -27,14 +27,22 @@ class MainHandler(tornado.web.RequestHandler):
     def get(self, quiz_id):
         db = self.application.settings['db']
         page = int(quiz_id or 1) - 1
-        quiz = (yield Op(db.quiz.find().skip(page).limit(1).to_list))
-        if not quiz:
+        if page < 0:
+            self.redirect('/1')
+            raise StopIteration
+        quizzes = (yield Op(db.quiz.find().skip(page).limit(2).to_list))
+        if len(quizzes) == 2:
+            quiz = quizzes[0]
+            has_next = True
+        elif len(quizzes) == 1:
+            quiz = quizzes[0]
+            has_next = False
+        else:
             raise tornado.web.HTTPError(404)
-        quiz = quiz[0]
         data = format_document(quiz['data'])
         correct_output = format_document(quiz['result'])
         self.render('main.html', quiz=quiz, data=data,
-                    page=page, correct_output=correct_output)
+                    has_next=has_next, page=page, correct_output=correct_output)
 
 
 class ExampleHandler(tornado.web.RequestHandler):
