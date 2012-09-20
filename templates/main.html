@@ -5,16 +5,27 @@
 
   <div class="row">
     <div class="page-header span12">
-      <h1>{{ quiz['title'] }}</h1>
+      <h1>{{ page + 1 }}) {{ quiz['title'] }}</h1>
       <h2>{{ quiz['description'] }}</h2>
     </div>
   </div>
+
   <div class="row">
     <div class="span6">
-      <h3>Sample data</h3>
-      <div id="editor" class="ace-editor">{% raw data %}</div>
-      <h3>Correct output</h3>
-      <div id="correct-output" class="ace-editor">{% raw correct_output %}</div>
+      <div class="tabbable">
+        <ul class="nav nav-pills">
+          <li class="active"><a href="#pane1" data-toggle="tab">Sample Data</a></li>
+          <li><a href="#pane2" data-toggle="tab">Correct output</a></li>
+        </ul>
+      <div class="tab-content">
+        <div id="pane1" class="tab-pane active">
+          <div id="editor" class="ace-editor">{% raw data %}</div>
+        </div>
+        <div id="pane2" class="tab-pane">
+          <div id="correct-output" class="ace-editor">{% raw correct_output %}</div>
+        </div>
+      </div>
+      </div>
     </div>
 
     <div class="span6">
@@ -38,13 +49,15 @@
 </div>
   <div class="row">
     <div class="span12 spacer">
-      <div class="progress progress-info progress-striped">
-        <div class="bar" style="width: {{ page * 7 }}%;"></div>
+      <div class="progress progress-info progress-striped active">
+        <div class="bar" style="width: {{ page * (100 / 13) }}%;"></div>
       </div>
     </div>
   </div>
 </section>
-
+<!-- [{"$match": {"name": "justin"}},
+ {"$group": {"_id": "$name", "avg_hits": {"$avg": "$hits"}}}
+] -->
 {% end %}
 
 {% block footer_scripts %}
