@@ -7,7 +7,7 @@ db.agg.save({
       "name": "justin",
       "games": [
         {
-          "date": "Wed Sep 19 2007 19:06:51 GMT-0400 (EDT)",
+          "date": ISODate("2007-09-19T19:06:51Z"),
           "hits": 20,
           "strikes": 1,
           "balls": 5,
@@ -15,7 +15,7 @@ db.agg.save({
         },
         {
           "game": 1,
-          "date": "Wed Sep 20 2007 19:06:51 GMT-0400 (EDT)",
+          "date": ISODate("2007-09-20T19:06:51Z"),
           "hits": 30,
           "strikes": 1,
           "balls": 5,
@@ -23,7 +23,7 @@ db.agg.save({
         },
         {
           "game": 1,
-          "date": "Wed Sep 21 2007 19:06:51 GMT-0400 (EDT)",
+          "date": ISODate("2007-09-21T19:06:51Z"),
           "hits": 50,
           "strikes": 1,
           "balls": 5,
@@ -34,7 +34,7 @@ db.agg.save({
   ],
   "result": [
     {
-      "date": "Wed Sep 19 2007 19:06:51 GMT-0400 (EDT)",
+      "date": ISODate("2007-09-19T19:06:51Z"),
       "hits": 20,
       "strikes": 1,
       "balls": 5,
@@ -42,7 +42,7 @@ db.agg.save({
     },
     {
       "game": 1,
-      "date": "Wed Sep 20 2007 19:06:51 GMT-0400 (EDT)",
+      "date": ISODate("2007-09-20T19:06:51Z"),
       "hits": 30,
       "strikes": 1,
       "balls": 5,
@@ -50,7 +50,7 @@ db.agg.save({
     },
     {
       "game": 1,
-      "date": "Wed Sep 21 2007 19:06:51 GMT-0400 (EDT)",
+      "date": ISODate("2007-09-21T19:06:51Z"),
       "hits": 50,
       "strikes": 1,
       "balls": 5,
