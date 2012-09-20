@@ -66,6 +66,6 @@ db.agg.save({
   "title": "return the pagesviews for each document but if it's dave's entry return 1000 as the pageViews",
   "description": "return the pagesviews for each document but if it's dave's entry return 1000 as the pageViews",
   "step_descriptions": [
-    "exclude the id field add the totalViews field that is the pageViews value + other.foo or other.bar if foo equals null"
+    "exclude the id field add the author and pageviews where pageviews is set to 1000 if the autor equals dave"
   ]
 });
