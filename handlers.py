@@ -96,13 +96,13 @@ class AnswerHandler(tornado.web.RequestHandler):
             message = '<br />'.join(message.split('\n'))
             self.write(json.dumps({
                 'ok': 0,
-                'result': result['result'],
+                'result': format_document(result['result']),
                 'error': message
             }, cls=ComplexEncoder))
         else:
             self.write(json.dumps({
                 'ok': 1,
-                'result': result['result'],
+                'result': format_document(result['result']),
                 'message': 'How lovely; cheers!'
             }, cls=ComplexEncoder))
 

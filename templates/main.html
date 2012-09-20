@@ -16,14 +16,14 @@
     <div class="span6">
       <div class="tabbable">
         <ul class="nav nav-pills">
-          <li class="active"><a href="#pane1" data-toggle="tab">Sample Data</a></li>
-          <li><a href="#pane2" data-toggle="tab">Correct output</a></li>
+          <li class="active"><a href="#the-data" data-toggle="tab">Sample Data</a></li>
+          <li><a href="#output" id="correct-output-tab" data-toggle="tab">Correct output</a></li>
         </ul>
       <div class="tab-content">
-        <div id="pane1" class="tab-pane active">
+        <div id="the-data" class="tab-pane active">
           <div id="editor" class="ace-editor">{% raw data %}</div>
         </div>
-        <div id="pane2" class="tab-pane">
+        <div id="output" class="tab-pane">
           <div id="correct-output" class="ace-editor">{% raw correct_output %}</div>
         </div>
       </div>
@@ -31,31 +31,45 @@
     </div>
 
     <div class="span6">
-      <h3>Your Answer: <button id="answer-button">Try it!</button></h3>
-      <form id="answer-form">
-      <div class="control-group">
-        <div class="controls">
-          <div id="answer-input" class="ace-editor"> </div>
+       <div class="tabbable">
+        <ul class="nav nav-pills">
+          <li class="active"><a href="#answer" data-toggle="tab">Your Answer</a></li>
+          <li style="display: none;" id="result-nav"><a href="#results" data-toggle="tab">Result</a></li>
+        </ul>
+        <div class="tab-content">
+           <div id="answer" class="tab-pane active">
+            <form id="answer-form">
+                <div id="answer-input" class="ace-editor"> </div>
+              <form id="answer-form">
+                <input type="hidden" id="quiz-id" value="{{ quiz['_id'] }}">
+              </form>
+              <div class="alert" id="agg-message" style="display: none;">&nbsp;</span>
+              </div>
+            </form>
+          </div>
+          <div id="results" class="tab-pane">
+            <div id="result" class="ace-editor"> </div>
+          </div>
         </div>
-      <div>
-        <form id="answer-form">
-          <input type="hidden" id="quiz-id" value="{{ quiz['_id'] }}">
-        </form>
-        <div class="alert" id="agg-message" style="display: none;">&nbsp;</span>
-      </div>
-      </form>
-
     </div>
     </div>
   </div>
-</div>
   <div class="row">
-    {% if page > 0 %}<a href="/{{ page }}" class="btn btn-inverse">←</a>{% end %}
-    {% if has_next %}<a href="/{{ page + 2 }}" class="btn btn-inverse">→</a>{% end %}
-    <div class="span12 spacer">
+    <div class="span6 offset6">
+      <a href="#" id="answer-button" class="btn btn-info btn-large">Try it!</a>
+    </div>
+  </div>
+  <div class="row footer">
+    <div class="span1">
+      <a href="/{{ page }}" class="btn btn-inverse {% if page > 0 %}disabled{% end %}">←</a>
+    </div>
+    <div class="span10 center spacer">
       <div class="progress progress-info progress-striped active">
-        <div class="bar" style="width: {{ page * (100 / 13) }}%;"></div>
+        <div class="bar" style="width: {{ (page + 1) * (100 / 13) }}%;"></div>
       </div>
+    </div>
+    <div class="span1 right">
+      <a href="/{{ page + 2 }}" class="btn btn-inverse {% if has_next %}disabled{% end %}">→</a>
     </div>
   </div>
 </section>

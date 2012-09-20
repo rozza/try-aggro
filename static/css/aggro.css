@@ -7,7 +7,7 @@
   background: #fff;
   min-width: 400px;
   max-width: 80%;
-  height: 400px;
+  height: 350px;
   border: 1px solid #999;
   -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
@@ -21,9 +21,18 @@
     left: 0;
 }
 
-.spacer {margin-top: 10px;}
+.spacer {margin-top: 13px;}
 
 .nav {
   font-size: 24px;
   line-height: 40px;
+  margin-bottom: 0px;
 }
+
+.nav-tabs li > a, .nav-pills li > a {
+-webkit-border-top-left-radius: 2px;
+-webkit-border-top-right-radius: 2px;
+}
+
+.right {text-align: right;}
+.center {text-align: center;}

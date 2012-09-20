@@ -13,6 +13,12 @@ $(function () {
                 } else {
                     message.html(data['error']).removeClass('alert-success').addClass('alert-error');
                 }
+                result.setValue(data['result']);
+
+                $('#result-nav').show();
+                $('#result-nav a').tab('show');
+                $('#correct-output-tab').tab('show');
+
             },
             error: function(jqXHR, textStatus, errorThrown) {
                 alert(textStatus);
