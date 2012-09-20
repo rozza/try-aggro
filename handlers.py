@@ -9,10 +9,14 @@ from motor import Op
 
 from diff_sequences import diff_sequences
 
+
 class MainHandler(tornado.web.RequestHandler):
+
+    @tornado.web.asynchronous
+    @gen.engine
     def get(self):
         db = self.application.settings['db']
-        quiz = db.quiz.find_one();
+        quiz = yield Op(db.quiz.find_one)
         self.render('main.html', quiz=quiz)
 
 
