@@ -10,7 +10,7 @@ $(function () {
                 console.log(data)
                 var message = $('#agg-message #alert_msg');
                 if (data['ok']) {
-                    message.html("<h3>AWESOME! Now try the next one!</h3>");
+                    message.html("<h3>I say old bean nice one! Now try the next one!</h3>");
                     alert.removeClass('alert-block').addClass('alert-success');
                 } else {
                     message.html("<h3>Unlucky, thats not quite right - please try again!</h3>");
