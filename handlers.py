@@ -30,7 +30,7 @@ class MainHandler(tornado.web.RequestHandler):
         if page < 0:
             self.redirect('/1')
             raise StopIteration
-        quizzes = (yield Op(db.quiz.find().sort('_id', -1).skip(page).limit(2).to_list))
+        quizzes = (yield Op(db.quiz.find().skip(page).limit(2).to_list))
         if len(quizzes) == 2:
             quiz = quizzes[0]
             has_next = True
@@ -51,6 +51,7 @@ class ExampleHandler(tornado.web.RequestHandler):
 
 
 class AnswerHandler(tornado.web.RequestHandler):
+
     @asynchronous
     @gen.engine
     def post(self, quiz_id):
@@ -92,18 +93,17 @@ class AnswerHandler(tornado.web.RequestHandler):
             correct_answer = [correct_answer]
 
         if correct_answer != result['result']:
-            message = diff_sequences(correct_answer, result['result'])
-            message = '<br />'.join(message.split('\n'))
+            diff = diff_sequences(correct_answer, result['result'])
+            diff = '<br />'.join(diff.split('\n'))
             self.write(json.dumps({
                 'ok': 0,
                 'result': format_document(result['result']),
-                'error': message
+                'diff': diff
             }, cls=ComplexEncoder))
         else:
             self.write(json.dumps({
                 'ok': 1,
                 'result': format_document(result['result']),
-                'message': 'How lovely; cheers!'
             }, cls=ComplexEncoder))
 
         self.finish()

@@ -10,10 +10,10 @@ $(function () {
                 console.log(data)
                 var message = $('#agg-message #alert_msg');
                 if (data['ok']) {
-                    message.html(data['message']);
+                    message.html("<h3>AWESOME! Now try the next one!</h3>");
                     alert.removeClass('alert-block').addClass('alert-success');
                 } else {
-                    message.html(data['error']);
+                    message.html("<h3>Unlucky, thats not quite right - please try again!</h3>");
                     alert.removeClass('alert-success').addClass('alert-block');
                 }
                 result.setValue(data['result']);
