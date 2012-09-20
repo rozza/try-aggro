@@ -31,7 +31,7 @@ if __name__ == "__main__":
     application = tornado.web.Application([
         URLSpec(r"/static/(.+)", StaticFileHandler, {"path": static_path}, name='static'),
         URLSpec(r"/answer/(?P<quiz_id>.+)", AnswerHandler, name='answer'),
-        URLSpec(r"/(?P<quiz_id>[0-9]+)", MainHandler, name='main'),
+        URLSpec(r"/(?P<quiz_id>[0-9]+)?", MainHandler, name='main'),
         URLSpec(r"/example/?", ExampleHandler, name='example'),
         ],
         db=db,

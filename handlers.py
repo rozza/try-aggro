@@ -24,9 +24,9 @@ class MainHandler(tornado.web.RequestHandler):
 
     @tornado.web.asynchronous
     @gen.engine
-    def get(self, quiz_id=1):
+    def get(self, quiz_id):
         db = self.application.settings['db']
-        page = int(quiz_id) - 1
+        page = int(quiz_id or 1) - 1
         quiz = (yield Op(db.quiz.find().skip(page).limit(1).to_list))
         if not quiz:
             raise tornado.web.HTTPError(404)
