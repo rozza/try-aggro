@@ -6,7 +6,7 @@ db.agg.save({
     {
       "title" : "this is my title" ,
       "author" : "bob" ,
-      "posted" : "Sun Mar 21 2004 13:59:54 GMT-0500 (EDT)",
+      "posted" : new Date(1079895594000),
       "pageViews" : 5 ,
       "tags" : [ "fun" , "good" , "fun" ] ,
       "comments" : [
@@ -18,7 +18,7 @@ db.agg.save({
     {
       "title" : "this is your title" ,
       "author" : "dave" ,
-      "posted" : "Sun Aug 08 2100 00:11:10 GMT-0400 (EDT)" ,
+      "posted" : new Date(4121381470000) ,
       "pageViews" : 7 ,
       "tags" : [ "fun" , "sport" ] ,
       "comments" : [
@@ -31,7 +31,7 @@ db.agg.save({
     {
       "title" : "this is some other title" ,
       "author" : "jane" ,
-      "posted" : "Sun Dec 31 2000 00:17:14 GMT-0500 (EST)" ,
+      "posted" : new Date(978239834000) ,
       "pageViews" : 6 ,
       "tags" : [ "sport" , "code" ] ,
       "comments" : [
@@ -44,7 +44,7 @@ db.agg.save({
   "result": {
     "title" : "this is your title" ,
     "author" : "dave" ,
-    "posted" : "Sun Aug 08 2100 00:11:10 GMT-0400 (EDT)" ,
+    "posted" : new Date(4121381470000) ,
     "pageViews" : 7 ,
     "tags" : [ "fun" , "sport" ] ,
     "comments" : [
