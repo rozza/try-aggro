@@ -23,6 +23,11 @@
         <div class="controls">
           <div id="answer-input" class="ace-editor"> </div>
         </div>
+      <div>
+        <form id="answer-form">
+          <input type="hidden" id="quiz-id" value="{{ quiz['_id'] }}">
+        </form>
+        <div class="alert" id="agg-message" style="display: none;">&nbsp;</span>
       </div>
       <button id="answer-button">Try it!</button>
       </form>

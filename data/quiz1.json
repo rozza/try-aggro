@@ -31,10 +31,10 @@ db.quiz.save({
       "homeround": 1
     }
   ],
-  "result": {
+  "result": [{
       "_id" : "justin",
       "avg_hits" : 33.333333333333336
-  },
+  }],
   "expected_aggregation": function(){return [
       {$match: {name:'justin'}},
       { $group : { _id : "$name", avg_hits : { $avg : "$hits" } } }]},
