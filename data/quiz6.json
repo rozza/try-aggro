@@ -1,6 +1,6 @@
 db.agg.save({
-  "title": "Select bob's post",
-  "description": "Let's match on a single document showing bobs's blog post using skip and limit",
+  "title": "Select dave's post",
+  "description": "Let's match on a single document showing dave's blog post using skip and limit",
   "difficulty": 1,
   "data": [
     {
