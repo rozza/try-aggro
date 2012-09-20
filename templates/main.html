@@ -16,8 +16,21 @@
       <h3>Sample data</h3>
       <textarea id="editor">{% raw data %}</textarea>
       <pre><code>{% raw data %}</code></pre>
+
+      <div>Your Answer:</div>
+      <div>
+        <form id="answer-form">
+          <textarea id="answer-input" rows="10" cols="100" style="background: black; color:#ffffff;"></textarea>
+          <input type="submit" value="Try it!" />
+        </form>
+        <div class="alert" id="agg-message" style="display: none;">&nbsp;</span>
+      </div>
     </div>
   </div>
 </section>
 
+{% end %}
+
+{% block footer_scripts %}
+<script src="/static/js/try-agg.js"></script>
 {% end %}

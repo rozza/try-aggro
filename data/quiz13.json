@@ -1,6 +1,4 @@
 db.agg.save({
-  "title": "Project tags and pageViews creating a new subdocument",
-  "description": "Let's pull out the tags and pageviews values and create a new meta sub document",
   "difficulty": 2,
   "data": [
     {
@@ -43,48 +41,53 @@ db.agg.save({
   ],
   "result": [
     {
-      "_id" : ObjectId("505a58819b1e9234661b98f5"),
       "author" : "bob",
-      "meta" : {
-        "tags" : [
-          "fun",
-          "good",
-          "fun"
-        ],
-        "views" : 5
-      }
+      "pageViews" : 5,
+      "tags" : "fun"
     },
     {
-      "_id" : ObjectId("505a58819b1e9234661b98f6"),
+      "author" : "bob",
+      "pageViews" : 5,
+      "tags" : "good"
+    },
+    {
+      "author" : "bob",
+      "pageViews" : 5,
+      "tags" : "fun"
+    },
+    {
       "author" : "dave",
-      "meta" : {
-        "tags" : [
-          "fun",
-          "sport"
-        ],
-        "views" : 7
-      }
+      "pageViews" : 7,
+      "tags" : "fun"
     },
     {
-      "_id" : ObjectId("505a58819b1e9234661b98f7"),
+      "author" : "dave",
+      "pageViews" : 7,
+      "tags" : "sport"
+    },
+    {
       "author" : "jane",
-      "meta" : {
-        "tags" : [
-          "sport",
-          "code"
-        ],
-        "views" : 6
-      }
+      "pageViews" : 6,
+      "tags" : "sport"
+    },
+    {
+      "author" : "jane",
+      "pageViews" : 6,
+      "tags" : "code"
     }
   ],
   "expected_aggregation": function(){return [
-      { $project : {
-          author : 1,
-          meta : { tags : "$tags",
-                   views : "$pageViews" }
-                  }}
-      ]},
+    { $project : {
+      _id : 0,
+      author : 1,
+      tags : 1,
+      pageViews : 1
+    }},
+    { $unwind : "$tags" }
+  ]},
+  "title": "unwind the tags and project a minimum set of values",
+  "description": "unwind the tags and project a minimum set of values",
   "step_descriptions": [
-    "exclude the id field and promote the foo and bar variables to the top results"
+    "exclude the id field add the author, tags and pageViews before unwinding all the documents by tags"
   ]
 });

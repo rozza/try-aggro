@@ -1,7 +1,5 @@
 db.agg.save({
-  "title": "Project tags and pageViews creating a new subdocument",
-  "description": "Let's pull out the tags and pageviews values and create a new meta sub document",
-  "difficulty": 2,
+  "difficulty": 3,
   "data": [
     {
       "title" : "this is my title" ,
@@ -43,48 +41,31 @@ db.agg.save({
   ],
   "result": [
     {
-      "_id" : ObjectId("505a58819b1e9234661b98f5"),
       "author" : "bob",
-      "meta" : {
-        "tags" : [
-          "fun",
-          "good",
-          "fun"
-        ],
-        "views" : 5
-      }
+      "pageViews" : 5
     },
     {
-      "_id" : ObjectId("505a58819b1e9234661b98f6"),
       "author" : "dave",
-      "meta" : {
-        "tags" : [
-          "fun",
-          "sport"
-        ],
-        "views" : 7
-      }
+      "pageViews" : 1007
     },
     {
-      "_id" : ObjectId("505a58819b1e9234661b98f7"),
       "author" : "jane",
-      "meta" : {
-        "tags" : [
-          "sport",
-          "code"
-        ],
-        "views" : 6
-      }
+      "pageViews" : 6
     }
   ],
   "expected_aggregation": function(){return [
-      { $project : {
-          author : 1,
-          meta : { tags : "$tags",
-                   views : "$pageViews" }
-                  }}
-      ]},
+    { $project : {
+      _id : 0,
+      author : 1,
+      pageViews : { $cond : [
+                    { $eq : ["$author", "dave"]},
+                        { $add : ["$pageViews", 1000]},
+                                 "$pageViews"]}
+    }}
+  ]},
+  "title": "return the pagesviews for each document but if it's dave's entry return 1000 as the pageViews",
+  "description": "return the pagesviews for each document but if it's dave's entry return 1000 as the pageViews",
   "step_descriptions": [
-    "exclude the id field and promote the foo and bar variables to the top results"
+    "exclude the id field add the author and pageviews where pageviews is set to 1000 if the autor equals dave"
   ]
 });

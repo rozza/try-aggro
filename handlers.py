@@ -35,7 +35,9 @@ class AnswerHandler(tornado.web.RequestHandler):
         try:
             parsed_body = json.loads(self.request.body)
         except ValueError:
-            raise HTTPError(500, "Can't parse JSON")
+            self.write({'ok': 0, 'error': 'Bad JSON'})
+            self.finish()
+            yield StopIteration
 
         print 'input', parsed_body
         db = self.application.settings['db']
@@ -46,7 +48,9 @@ class AnswerHandler(tornado.web.RequestHandler):
                 ('pipeline', parsed_body),
             ]))
         except Exception, e:
-            raise HTTPError(500, str(e))
+            self.write({'ok': 0, 'error': str(e)})
+            self.finish()
+            yield StopIteration
 
         correct_answer = []#[{'a': 1}] # TODO
 
@@ -57,6 +61,7 @@ class AnswerHandler(tornado.web.RequestHandler):
             message = 'How lovely; cheers!'
 
         self.write(json.dumps({
+            'ok': 1,
             'result': result['result'],
             'message': message
         }))

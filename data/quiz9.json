@@ -1,7 +1,7 @@
 db.agg.save({
-  "title": "Project tags and pageViews creating a new subdocument",
-  "description": "Let's pull out the tags and pageviews values and create a new meta sub document",
-  "difficulty": 2,
+  "title": "Return the total page views for each document adding together the pageViews and either the foo or bar values",
+  "description": "Return the total page views for each document adding together the pageViews and either the foo or bar values",
+  "difficulty": 3,
   "data": [
     {
       "title" : "this is my title" ,
@@ -43,48 +43,25 @@ db.agg.save({
   ],
   "result": [
     {
-      "_id" : ObjectId("505a58819b1e9234661b98f5"),
-      "author" : "bob",
-      "meta" : {
-        "tags" : [
-          "fun",
-          "good",
-          "fun"
-        ],
-        "views" : 5
-      }
+      "totalViews" : 10
     },
     {
-      "_id" : ObjectId("505a58819b1e9234661b98f6"),
-      "author" : "dave",
-      "meta" : {
-        "tags" : [
-          "fun",
-          "sport"
-        ],
-        "views" : 7
-      }
+      "totalViews" : 21
     },
     {
-      "_id" : ObjectId("505a58819b1e9234661b98f7"),
-      "author" : "jane",
-      "meta" : {
-        "tags" : [
-          "sport",
-          "code"
-        ],
-        "views" : 6
-      }
+      "totalViews" : 20
     }
   ],
   "expected_aggregation": function(){return [
-      { $project : {
-          author : 1,
-          meta : { tags : "$tags",
-                   views : "$pageViews" }
-                  }}
-      ]},
+    { $project : {
+    _id: 0, 
+    totalViews : { $add :
+                    ["$pageViews",
+                     { $ifNull : ["$other.foo",
+                                  "$other.bar"] } ] }
+    }}
+  ]},
   "step_descriptions": [
-    "exclude the id field and promote the foo and bar variables to the top results"
+    "exclude the id field add the totalViews field that is the pageViews value + other.foo or other.bar if foo equals null"
   ]
 });
