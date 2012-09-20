@@ -57,13 +57,13 @@ db.quiz.save({
   "expected_aggregation": function(){return [
     { $match : {"comments.author" : "jenny" }},
     { $project : {
-      _id: 0, 
+      _id: 0,
       comments : 1
     }},
     { $unwind : "$comments" },
     { $match : { "comments.author" : "jenny" } }
   ]},
-  "title": "only show the comments where jenny was the author",
+  "title": "Jenny's comments",
   "description": "only show the comments where jenny was the author",
   "step_descriptions": [
     "filter out all the documents where the author is jenny, project the comments, unwind all of the comments and filter out all comments not written by jenny"

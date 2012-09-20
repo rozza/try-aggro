@@ -193,7 +193,7 @@ db.quiz.save({
   "expected_aggregation": function(){return [
     { $unwind : "$tags" }
   ]},
-  "title": "unwind the tags emitting a document for each tag",
+  "title": "Playing tag",
   "description": "unwind the tags emitting a document for each tag",
   "step_descriptions": [
     "emit all the documents pr tag, each tag will return be returned with all the other document fields"

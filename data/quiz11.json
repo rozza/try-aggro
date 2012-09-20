@@ -63,7 +63,7 @@ db.quiz.save({
                                  "$pageViews"]}
     }}
   ]},
-  "title": "return the pagesviews for each document but if it's dave's entry return 1000 as the pageViews",
+  "title": "Doctor Daves views",
   "description": "return the pagesviews for each document but if it's dave's entry return 1000 as the pageViews",
   "step_descriptions": [
     "exclude the id field add the author and pageviews where pageviews is set to 1000 if the autor equals dave"

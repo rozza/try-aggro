@@ -1,5 +1,5 @@
 db.quiz.save({
-  "title": "Return the total page views for each document adding together the pageViews and either the foo or bar values",
+  "title": "Playing with project",
   "description": "Return the total page views for each document adding together the pageViews and either the foo or bar values",
   "difficulty": 3,
   "data": [
@@ -54,7 +54,7 @@ db.quiz.save({
   ],
   "expected_aggregation": function(){return [
     { $project : {
-    _id: 0, 
+    _id: 0,
     totalViews : { $add :
                     ["$pageViews",
                      { $ifNull : ["$other.foo",
