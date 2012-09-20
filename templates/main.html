@@ -1,7 +1,6 @@
 {% extends "base.html" %}
 
 {% block container %}
-{% from pprint import pformat %}
 <section id="quiz">
 
   <div class="row">
@@ -17,7 +16,7 @@
     </div>
 
     <div class="span6">
-      <h3>Your Answer:</h3> <div class="alert" id="agg-message" style="display: none;">&nbsp;</div>
+      <h3>Your Answer: <button id="answer-button">Try it!</button></h3>
       <form id="answer-form">
       <div class="control-group">
         <div class="controls">
@@ -29,7 +28,6 @@
         </form>
         <div class="alert" id="agg-message" style="display: none;">&nbsp;</span>
       </div>
-      <button id="answer-button">Try it!</button>
       </form>
 
     </div>
