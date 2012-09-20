@@ -1,4 +1,4 @@
-db.agg.save({
+db.quiz.save({
   "title": "Split out all the components of the data for each document and return a new exploded document",
   "description": "Split out all the components of the data for each document and return a new exploded document",
   "difficulty": 3,

@@ -1,4 +1,4 @@
-db.agg.save({
+db.quiz.save({
   "difficulty": 2,
   "data": [
     {

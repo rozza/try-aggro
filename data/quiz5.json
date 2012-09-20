@@ -1,4 +1,4 @@
-db.agg.save({
+db.quiz.save({
   "title": "Select bob's post",
   "description": "Let's match on a single document showing bobs's blog post using skip and limit",
   "difficulty": 1,

@@ -1,4 +1,4 @@
-db.agg.save({
+db.quiz.save({
   "title": "Project tags and pageViews creating a new subdocument",
   "description": "Let's pull out the tags and pageviews values and create a new meta sub document",
   "difficulty": 2,
