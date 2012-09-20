@@ -1,4 +1,4 @@
-{
+db.agg.save({
   "title": "Select dave's post",
   "description": "Let's match on a single document showing dave's blog post using skip and limit",
   "difficulty": 1,
@@ -65,10 +65,13 @@
         "foo" : 5
       }
     },
-  "expected_aggregation": "[{ $sort : { author: 1} }, { $skip : 0 }, { $limit : 1 }]",
+  "expected_aggregation": function(){return [
+      { $sort : { author: 1} },
+      { $skip : 0 }, 
+      { $limit : 1 }]},
   "step_descriptions": [
     "sort by author",
     "skip 0 documents",
     "limit the result set to a single document"
   ]
-}
+});

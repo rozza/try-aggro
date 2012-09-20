@@ -1,4 +1,4 @@
-{
+db.agg.save({
   "title": "Select dave's post",
   "description": "Let's match on a single document showing dave's blog post",
   "difficulty": 1,
@@ -54,8 +54,9 @@
       ],
       "other" : { "bar" : 14 }
   },
-  "expected_aggregation": "[{ $match : { author : \"dave\" }]",
+  "expected_aggregation": function(){return [
+      { $match : { author : "dave" }}]},
   "step_descriptions": [
     "select the blog post for dave"
   ]
-}
+});
