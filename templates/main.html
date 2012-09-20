@@ -11,8 +11,19 @@
     <div class="span9">
       <div>Hai </div>
       {{ quiz}}
+      <div>Your Answer:</div>
+      <div>
+        <form id="answer-form">
+          <textarea id="answer-input" rows="10" cols="100" style="background: black; color:#ffffff;"></textarea>
+          <input type="submit" value="Try it!" />
+        </form>
+      </div>
     </div>
   </div>
 </section>
 
+{% end %}
+
+{% block footer_scripts %}
+<script src="/static/js/try-agg.js"></script>
 {% end %}
