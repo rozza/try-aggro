@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+import os
 import sys
 
 import tornado.ioloop
@@ -25,11 +26,15 @@ except ImportError:
 
 
 if __name__ == "__main__":
-    db = motor.MotorConnection().open_sync().agg
+
+    mongodb_uri = os.environ.get('MONGOLAB_URI', 'mongodb://localhost:27017')
+
+    db = motor.MotorConnection(mongodb_uri).open_sync().agg
     static_path = 'static'
 
     application = tornado.web.Application([
-        URLSpec(r"/static/(.+)", StaticFileHandler, {"path": static_path}, name='static'),
+        URLSpec(r"/static/(.+)", StaticFileHandler,
+                                    {"path": static_path}, name='static'),
         URLSpec(r"/answer/(?P<quiz_id>.+)", AnswerHandler, name='answer'),
         URLSpec(r"/(?P<quiz_id>[0-9]+)?", MainHandler, name='main'),
         URLSpec(r"/example/?", ExampleHandler, name='example'),
@@ -41,5 +46,5 @@ if __name__ == "__main__":
 
     http_server = httpserver.HTTPServer(application)
     http_server.listen(8000)
-    print 'Listening on port %s' % 8000
+    #print 'Listening on port %s' % 8000
     tornado.ioloop.IOLoop.instance().start()
