@@ -112,7 +112,7 @@ class AnswerHandler(tornado.web.RequestHandler):
 class ComplexEncoder(json.JSONEncoder):
     def default(self, obj):
         if isinstance(obj, datetime.datetime):
-            return 'ISODate("%sZ")' % obj.isoformat()
+            return 'ISODate(\"%sZ\")' % obj.isoformat()
         elif isinstance(obj, ObjectId):
-            return 'ObjectId("%s")' % obj
+            return 'ObjectId(\"%s\")' % obj
         return json.JSONEncoder.default(self, obj)

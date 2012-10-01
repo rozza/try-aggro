@@ -33,7 +33,7 @@ db.quiz.save({
   ],
   "result": {
       "_id" : "justin",
-      "avg_hits" : 3
+      "total_strikes" : 3.0
   },
   "expected_aggregation": function(){return [
       {$match: {name:'justin'}},
