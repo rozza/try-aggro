@@ -1,4 +1,4 @@
 Try Aggro
 =========
 
-http://try-aggro.herokuapp.com
+Now on: http://try-aggro.herokuapp.com
